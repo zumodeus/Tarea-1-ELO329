@@ -2,8 +2,8 @@
 public class Lamp extends DomoticDevice {
 
     // Private Attributes
-    private short r, g, b;
     private State state;
+    private short r, g, b;
 
     // Constructor
     public Lamp(int _c) {
@@ -33,22 +33,22 @@ public class Lamp extends DomoticDevice {
 
     // Get Header Method
     public String getHeader() {
-        return  String.format("%-4s", "L" + id + "R") + "\t" +
-                String.format("%-4s", "L" + id + "G") + "\t" +
-                String.format("%-4s", "L" + id + "B") + "\t";
+        return  String.format("%-8s", "L" + id + "R") + "\t" +
+                String.format("%-8s", "L" + id + "G") + "\t" +
+                String.format("%-8s", "L" + id + "B") + "\t";
     };
 
     // To String Method
     public String toString() {
         if (state==State.ON)
             return  "" + 
-                    String.format("%-4s", r) + 
+                    String.format("%-8s", r) + 
                     "\t" + 
-                    String.format("%-4s", g) + 
+                    String.format("%-8s", g) + 
                     "\t" + 
-                    String.format("%-4s", b) + 
+                    String.format("%-8s", b) + 
                     "\t";
         else
-            return  "0   \t0   \t0   \t";
+            return  "0       \t0       \t0       \t";
     };
 }

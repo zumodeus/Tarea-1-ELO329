@@ -7,15 +7,14 @@ public class Cloud {
     // Private Attributes
     private ArrayList<Lamp> lamps;
     private ArrayList<Roller> rollers;
-    private ArrayList<LampControl> lampsControl;
-    private ArrayList<RollerControl> rollerControl;
+    private ArrayList<DomoticControl> lampsControl, rollersControl;
 
     // Constructor
     public Cloud() {
         lamps = new ArrayList<Lamp>();
         rollers = new ArrayList<Roller>();
-        lampsControl = new ArrayList<LampControl>();
-        rollerControl = new ArrayList<RollerControl>();
+        lampsControl = new ArrayList<DomoticControl>();
+        rollersControl = new ArrayList<DomoticControl>();
     };
 
     // Add Lamp Method
@@ -25,32 +24,46 @@ public class Cloud {
     };
 
     // Add Roller Method
-    public void addRoller() {};
+    public void addRoller(Roller r) {
+        r.setId(rollers.size());
+        rollers.add(r);
+    };
 
     // Add Lamp Control Method
-    public void addLampControl(LampControl lc) {
+    public void addLampControl(DomoticControl lc) {
         lampsControl.add(lc);
     };
 
     // Add Roller Control Method
-    public void addRollerControl() {}
+    public void addRollerControl(DomoticControl rc) {
+        rollersControl.add(rc);
+    }
 
     // Get Lamp At Channel Method
     public ArrayList<Lamp> getLampAtChannel(int channel) {
         ArrayList<Lamp> response = new ArrayList<Lamp>();
         for (int i=0; i<lamps.size(); i++)
-            if (lamps.get(i).getChannel() == channel) {
+            if (lamps.get(i).getChannel() == channel)
                 response.add(lamps.get(i));
-                break;
-            }
         return response;
     };
 
-    // Get Lamp Control At Channel Method
-    public boolean existsLampControl(int channel) {
+    // Get Roller At Channel Method
+    public ArrayList<Roller> getRollerAtChannel(int channel) {
+        ArrayList<Roller> response = new ArrayList<Roller>();
+        for (int i=0; i<rollers.size(); i++)
+            if (rollers.get(i).getChannel() == channel)
+                response.add(rollers.get(i));
+        return response;
+    };
+
+    // Exists Domotic Device Control At Channel Method
+    public boolean existsControlAtChannel(int channel, boolean lamp) {
         boolean response = false;
-        for (int i=0; i<lampsControl.size(); i++){
-            if (lampsControl.get(i).getChannel() == channel) {
+        int size = lamp ? lampsControl.size() : rollers.size();
+        for (int i=0; i<size; i++){
+            DomoticDevice device = lamp ? lamps.get(i) : rollers.get(i);
+            if (device.getChannel() == channel) {
                 response = true;
                 break;
             }}
@@ -59,7 +72,7 @@ public class Cloud {
 
     // Change Lamp Power State Method
     public void changeLampPowerState(int channel) {
-        if (existsLampControl(channel))
+        if (existsControlAtChannel(channel, true))
             for (int i=0; i<lamps.size(); i++)
                 if (lamps.get(i).getChannel() == channel)
                     lamps.get(i).changePowerState();
@@ -68,7 +81,7 @@ public class Cloud {
     // Change Lamp Value Intensity
     public void changeLampValueIntensity(int channel, String color, String operator) {
         ArrayList<Lamp> lamparas = getLampAtChannel(channel);
-        if (lamparas.size() > 0 && existsLampControl(channel))
+        if (lamparas.size() > 0 && existsControlAtChannel(channel, true))
             for (int i=0; i<lamparas.size(); i++)
                 lamparas.get(i).changeValueIntensity(color, operator);
     };
@@ -76,6 +89,8 @@ public class Cloud {
     // Get Headers Method
     public String getHeaders() {
         String header = "";
+        for (Roller r: rollers)
+            header += r.getHeader();
         for (Lamp l: lamps)
             header += l.getHeader();
         return header;
@@ -84,6 +99,8 @@ public class Cloud {
     // Get State Method
     public String getState() {
         String state = "";
+        for (Roller r: rollers)
+            state += r.toString();
         for (Lamp l: lamps)
             state += l.toString();
         return state;

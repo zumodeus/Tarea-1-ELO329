@@ -37,7 +37,17 @@ public class Main {
             };
 
             // Linea 2 (Roller Shade Datos)
-            if (linea == 2) {};
+            if (linea == 2) {
+                int index = 0;
+                for (int i=0; i<n_cortinas; i++) {
+                    cloud.addRoller(new Roller(
+                        Double.parseDouble(datos[index]),
+                        Double.parseDouble(datos[index + 1]),
+                        Integer.parseInt(datos[index + 2])
+                    ));
+                    index += 3;
+                }
+            };
 
             // Linea 3 (Lamparas Datos)
             if (linea == 3)
@@ -45,12 +55,14 @@ public class Main {
                     cloud.addLamp(new Lamp(Integer.parseInt(datos[i])));
 
             // Linea 4 (Controles Roller Datos)
-            if (linea == 4) {};
+            if (linea == 4)
+                for (int i=0; i<n_c_cortinas; i++)
+                    cloud.addRollerControl(new DomoticControl(Integer.parseInt(datos[i])));
 
             // Linea 5 (Controles Lampara Datos)
             if (linea == 5)
                 for (int i=0; i<n_c_lamparas; i++)
-                    cloud.addLampControl(new LampControl(Integer.parseInt(datos[i])));
+                    cloud.addLampControl(new DomoticControl(Integer.parseInt(datos[i])));
 
             // Agregando una linea
             linea += 1;

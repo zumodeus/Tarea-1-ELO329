@@ -37,7 +37,7 @@ public class Operator {
             
             // Cortinas
             if (string.equals("C")) {
-
+                
             };
 
             // Printeo de Status

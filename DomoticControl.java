@@ -1,11 +1,10 @@
-// LampControl Class (Control de Lampara)
-public class LampControl {
+public class DomoticControl {
 
     // Private Attributes
     private int channel;
 
     // Constructor
-    public LampControl(int _c) {
+    public DomoticControl(int _c) {
         channel = _c;
     };
 
@@ -13,4 +12,4 @@ public class LampControl {
     public int getChannel() {
         return channel;
     };
-}
+};
