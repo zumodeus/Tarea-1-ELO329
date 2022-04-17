@@ -1,23 +1,45 @@
-# POO | ELO329
+# Tarea 1 | ELO329 | Diseño y Programacion Orientada a Objetos
 
-Repositorio de tareas y codigos, para el ramo de diseño y programación orientada a objetos.
+Simulacion y registro de dispositivos domoticos.
 
 ## Introducción
 
-Primero debes estar en la rama `master`, como se muestra a continuación:
 
-```sh
-~ % git checkout master
+
+### Input
+
+```txt
+2	1	1	1
+2.1	1	1	2.5	1.5	1
+0
+1
+0
+0	C	1	D
+1	L	0	N
+7	L	0	R	D
+8	L	0	B	U
+15	L	0	F
+:
 ```
 
-Para subir un archivo o una modificacion de algun archivo o archivos, debes enviar el commit con la siguiente estructura:
+### Output
 
-```sh
-~ % git commit -m "Pequeña descripcion de lo que se hizo. nombre-del-archivo-nuevo-o-modificado-n.endfile"
+```csv
+Time	RS0     	RS1     	L0R     	L0G     	L0B     	
+0.0 	0       	0       	0       	0       	0       	
+1.0 	8       	7       	255     	255     	255     	
+7.0 	59      	47      	254     	255     	255     	
+8.0 	67      	53      	254     	255     	255     	
+15.0	100     	100     	0       	0       	0       	
 ```
 
-## Tareas
+## Autores
 
-| Tarea | Nombre del Archivo |
-| - | - |
-| 1 | Domotica.java |
+Juan Chavez Toledo ROL: *XXX.XXX.XXX-X* [Correo USM](mailto:juan.chavezt@usm.cl).
+Vicente Zúñiga Montenegro ROL: *202.130.526-2* [Correo USM](mailto:vicente.zunigam@usm.cl).
+
+## Version
+
+```sh
+Domotic Simulation v1.0.0-2022 | First Homework | ELO329 POO - 2022
+```
