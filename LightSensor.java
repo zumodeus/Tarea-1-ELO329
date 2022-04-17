@@ -10,10 +10,11 @@ public class LightSensor {
 
     // Check Channel
     public void checkChannel(int channel) {
-        int cantidad = 0;
-        for (Lamp l: cloud.getLampAtChannel(channel)) cantidad += (l.getStatus() && l.getTotalValue() > 512 ? 1 : 0);
-        if (cantidad == cloud.getLampAtChannel(channel).size() && cloud.getRollerAtChannel(channel).size() > 0) closeRoller(channel);
-    };
+        if (cloud.getLampAtChannel(channel).size() > 0) {
+            int cantidad = 0;
+            for (Lamp l: cloud.getLampAtChannel(channel)) cantidad += (l.getStatus() && l.getTotalValue() > 512 ? 1 : 0);
+            if (cantidad == cloud.getLampAtChannel(channel).size() && cloud.getRollerAtChannel(channel).size() > 0) closeRoller(channel);    
+        }};
 
     // Close Roller
     private void closeRoller(int channel) {
