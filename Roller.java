@@ -56,14 +56,21 @@ public class Roller extends DomoticDevice {
         }
     };
 
+    // Close Roller Method
+    public void close() {
+        lastTime = .0;
+        length = MaxLength;
+        status = Status.STOPPED;
+    };
+
     // Roller Header String
     public String getHeader() {
-        return String.format("%-8s", "RS" + id) + "\t";
+        return String.format("%-4s", "RS" + id) + "\t";
     };
 
     // Roller Data String
     public String toString(double time) {
         if (time != lastTime) advanceTime(time);
-        return String.format("%-8s", String.valueOf(Math.round((length/MaxLength)*100))) + "\t";
+        return String.format("%-4s", String.valueOf(Math.round((length/MaxLength)*100))) + "\t";
     };
 };

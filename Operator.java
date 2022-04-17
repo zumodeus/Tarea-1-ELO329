@@ -8,10 +8,12 @@ public class Operator {
     // Private Attributes
     private Cloud cloud;
     private double time=0;
+    private LightSensor sensor;
 
     // Constructor
     public Operator(Cloud c){
         cloud = c;
+        sensor = new LightSensor(c);
     }
 
     // Execute Commands Method
@@ -33,11 +35,14 @@ public class Operator {
                 if (instruction.equals("R") || instruction.equals("G") || instruction.equals("B"))
                     cloud.changeLampValueIntensity(channel, instruction, in.next());
                 else
-                    cloud.changeLampPowerState(channel);
+                    cloud.changeLampPowerState(channel, instruction);
             
             // Cortinas
             if (string.equals("C"))
                 cloud.changeRollerMotorStatus(channel, time, instruction);
+            
+            // Check Sensor
+            if ((time == .0 && string.equals("L")) || time != .0) sensor.checkChannel(channel);
 
             // Printeo de Status
             out.println(String.format("%-4s", time + "") + "\t" + cloud.getState(time));

@@ -71,11 +71,11 @@ public class Cloud {
     };
 
     // Change Lamp Power State Method
-    public void changeLampPowerState(int channel) {
+    public void changeLampPowerState(int channel, String operator) {
         if (existsControlAtChannel(channel, true))
             for (int i=0; i<lamps.size(); i++)
                 if (lamps.get(i).getChannel() == channel)
-                    lamps.get(i).changePowerState();
+                    lamps.get(i).changePowerState(operator);
     };
 
     // Change Roller Motor Status Method

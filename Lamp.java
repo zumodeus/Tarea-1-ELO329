@@ -2,18 +2,19 @@
 public class Lamp extends DomoticDevice {
 
     // Private Attributes
-    private State state;
     private short r, g, b;
+    private static boolean status;
 
     // Constructor
     public Lamp(int _c) {
         super(_c);
+        status = false;
         r = g = b = 255;
     };
 
     // Change Power State Method
-    public void changePowerState() {
-        state = State.ON == state ? State.OFF : State.ON;
+    public void changePowerState(String operator) {
+        status = operator.equals("N") ? true : false;
     };
 
     // Change Value Intensity Method
@@ -31,24 +32,33 @@ public class Lamp extends DomoticDevice {
                 else b += 1;
     };
 
+    public boolean getStatus() {
+        return status;
+    };
+
+    // Get Total Value Method
+    public int getTotalValue() {
+        return r + g + b;
+    };
+
     // Get Header Method
     public String getHeader() {
-        return  String.format("%-8s", "L" + id + "R") + "\t" +
-                String.format("%-8s", "L" + id + "G") + "\t" +
-                String.format("%-8s", "L" + id + "B") + "\t";
+        return  String.format("%-4s", "L" + id + "R") + "\t" +
+                String.format("%-4s", "L" + id + "G") + "\t" +
+                String.format("%-4s", "L" + id + "B") + "\t";
     };
 
     // To String Method
     public String toString() {
-        if (state==State.ON)
+        if (status)
             return  "" + 
-                    String.format("%-8s", r) + 
+                    String.format("%-4s", r) + 
                     "\t" + 
-                    String.format("%-8s", g) + 
+                    String.format("%-4s", g) + 
                     "\t" + 
-                    String.format("%-8s", b) + 
+                    String.format("%-4s", b) + 
                     "\t";
         else
-            return  "0       \t0       \t0       \t";
+            return  "0   \t0   \t0   \t";
     };
 }
