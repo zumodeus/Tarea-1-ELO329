@@ -78,6 +78,16 @@ public class Cloud {
                     lamps.get(i).changePowerState();
     };
 
+    // Change Roller Motor Status Method
+    public void changeRollerMotorStatus(int channel, double time, String operator) {
+        if (existsControlAtChannel(channel, false))
+            for (int i=0; i<rollers.size(); i++)
+                if (rollers.get(i).getChannel() == channel)
+                    if (operator.equals("U")) rollers.get(i).startUp(time);
+                    else if (operator.equals("D")) rollers.get(i).startDown(time);
+                    else rollers.get(i).stop(time);
+    }
+
     // Change Lamp Value Intensity
     public void changeLampValueIntensity(int channel, String color, String operator) {
         ArrayList<Lamp> lamparas = getLampAtChannel(channel);
@@ -97,10 +107,10 @@ public class Cloud {
     };
 
     // Get State Method
-    public String getState() {
+    public String getState(double time) {
         String state = "";
         for (Roller r: rollers)
-            state += r.toString();
+            state += r.toString(time);
         for (Lamp l: lamps)
             state += l.toString();
         return state;

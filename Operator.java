@@ -17,7 +17,7 @@ public class Operator {
     // Execute Commands Method
     public void executeCommands(Scanner in, PrintStream out) {
         out.println("Time\t" + cloud.getHeaders());
-        out.println(String.format("%-4s", time + "") + "\t" + cloud.getState());
+        // out.println(String.format("%-4s", time + "") + "\t" + cloud.getState(time));
         while(in.hasNextInt()){
 
             // Obteniendo tiempo & device
@@ -36,12 +36,11 @@ public class Operator {
                     cloud.changeLampPowerState(channel);
             
             // Cortinas
-            if (string.equals("C")) {
-                
-            };
+            if (string.equals("C"))
+                cloud.changeRollerMotorStatus(channel, time, instruction);
 
             // Printeo de Status
-            out.println(String.format("%-4s", time + "") + "\t" + cloud.getState());
+            out.println(String.format("%-4s", time + "") + "\t" + cloud.getState(time));
         };
     }
 };
