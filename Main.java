@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
 
     // Private Variables
+    private static String filename;
     private static int n_cortinas, n_lamparas, n_c_cortinas, n_c_lamparas;
 
     // Static Main
@@ -17,8 +18,11 @@ public class Main {
         // Linea
         int linea = 1;
 
+        // Filename
+        filename = args.length > 0 ? args[0] : input("Ingrese el nombre del archivo: ");
+
         // Escaneo de Archivo
-        Scanner documento = new Scanner(new File(args[0]));
+        Scanner documento = new Scanner(new File(filename));
 
         // Leyendo Archivo
         do {
@@ -71,5 +75,12 @@ public class Main {
         // Operator
         Operator operador = new Operator(cloud);
         operador.executeCommands(documento, System.out);
+    };
+
+    // Input
+    private static String input (String x) {
+        System.out.print(x);
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
     };
 };
