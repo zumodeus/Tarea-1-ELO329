@@ -79,8 +79,11 @@ public class Main {
 
     // Input
     private static String input (String x) {
+        String response = "";
         System.out.print(x);
         Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+        response = scan.nextLine();
+        scan.close();
+        return response;
     };
 };
