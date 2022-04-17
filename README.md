@@ -36,6 +36,7 @@ Time	RS0     	RS1     	L0R     	L0G     	L0B
 ## Autores
 
 Juan Chavez Toledo ROL: *XXX.XXX.XXX-X* [Correo USM](mailto:juan.chavezt@usm.cl).
+
 Vicente Zúñiga Montenegro ROL: *202.130.526-2* [Correo USM](mailto:vicente.zunigam@usm.cl).
 
 ## Version
