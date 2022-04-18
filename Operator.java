@@ -20,7 +20,7 @@ public class Operator {
     public void executeCommands(Scanner in, PrintStream out) {
         out.println("Time\t" + cloud.getHeaders());
         // out.println(String.format("%-4s", time + "") + "\t" + cloud.getState(time));
-        while(in.hasNextInt()){
+        while(in.hasNextInt()) {
 
             // Obteniendo tiempo & device
             time=in.nextInt();
@@ -47,5 +47,8 @@ public class Operator {
             // Printeo de Status
             out.println(String.format("%-4s", time + "") + "\t" + cloud.getState(time));
         };
+
+        // Closing Scanner
+        in.close();
     }
 };
