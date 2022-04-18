@@ -3,4 +3,4 @@ main: Main.java Operator.java Cloud.java Status.java LightSensor.java DomoticDev
 run: Main.class
 	java Main
 clean:
-	rm *.class *.csv
+	rm *.class

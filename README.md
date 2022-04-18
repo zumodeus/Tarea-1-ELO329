@@ -4,6 +4,35 @@ Simulacion y registro de dispositivos domoticos.
 
 ## Introducción
 
+Este aplicacion esta centrada en el funcionamiento de dos aparatos electronicos domesticos (Cortinas y Lamparas), la principal caracteristica del programa es el hecho de que se comporta como una bitacora de eventos, en el cual se ira registrando cada movimiento o accion que se produzca cada x segundos.
+
+### Compilación
+
+```sh
+make
+```
+
+### Ejecucion
+
+Para ejecutar la aplicación lo puedes hacer con el siguiente comando:
+
+```sh
+java Main <archivo>.txt > <archivo>.csv
+```
+
+Tambien puede ejectuarse con el comando:
+
+```sh
+# Pero este comando no te permitira guardar la salida en un nuevo archivo
+# solo lo imprimira por consola.
+make run
+```
+
+### Limpiar
+
+```sh
+make clean
+```
 
 ### Input
 
@@ -36,6 +65,8 @@ Simulacion y registro de dispositivos domoticos.
 
 ### Output
 
+**La salida de esta aplicación puede datse de dos maneras, por consola o por un archivo:**
+
 ```sh
 # ~ % java Main <archivo>.txt > <archivo>.csv
 Time    RS0     RS1     L0R     L0G     L0B 
@@ -48,7 +79,7 @@ Time    RS0     RS1     L0R     L0G     L0B
 
 ### Funcionamiento (Diagrama de Clases)
 
-
+<img src="diagrama-de-clases.png">
 
 ## Autores
 
